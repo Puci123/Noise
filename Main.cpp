@@ -17,7 +17,7 @@ sf::Texture CreateTexture(int sizeX, int sizeY,PerlinNoise noise)
     {
         for (int y = 0; y < sizeY; y++)
         {
-            float value = noise.GetValue();
+            float value = noise.ValueNoise2D(x,y);
 
             pixels[(x + y * sizeX) * 4]     = value;   // R
             pixels[(x + y * sizeX) * 4 + 1] = value;   // G
@@ -37,7 +37,7 @@ int main()
 {
     int sizeX = 400;
     int sizeY = 400;
-    PerlinNoise noise;
+    PerlinNoise noise(40,sizeX,sizeY);
 
     //Open window
     sf::RenderWindow window(sf::VideoMode(screanWidth, screanHeight), "Perlin Noise");
