@@ -37,7 +37,7 @@ int main()
 {
     int sizeX = 400;
     int sizeY = 400;
-    PerlinNoise noise(40,sizeX,sizeY);
+    PerlinNoise noise(5,sizeX,sizeY);
 
     //Open window
     sf::RenderWindow window(sf::VideoMode(screanWidth, screanHeight), "Perlin Noise");
