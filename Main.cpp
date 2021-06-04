@@ -13,9 +13,9 @@ sf::Texture CreateTexture(int sizeX, int sizeY,PerlinNoise noise)
     texture.create(sizeX, sizeY);
     sf::Uint8* pixels = new sf::Uint8[sizeX * sizeY * 4];
 
-    for (int x = 0; x < sizeX; x++)
+    for (int y = 0; y < sizeY; y++)
     {
-        for (int y = 0; y < sizeY; y++)
+        for (int x = 0; x < sizeX; x++)
         {
             float value = noise.ValueNoise2D(x,y);
 
@@ -29,7 +29,6 @@ sf::Texture CreateTexture(int sizeX, int sizeY,PerlinNoise noise)
     texture.update(pixels);
 
     delete[] pixels;
-
     return texture;
 }
 
@@ -37,7 +36,7 @@ int main()
 {
     int sizeX = 400;
     int sizeY = 400;
-    PerlinNoise noise(5,sizeX,sizeY);
+    PerlinNoise noise(120,sizeX,sizeY,50,50);
 
     //Open window
     sf::RenderWindow window(sf::VideoMode(screanWidth, screanHeight), "Perlin Noise");
