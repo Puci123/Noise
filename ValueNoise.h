@@ -1,8 +1,12 @@
 #pragma once
-class PerlinNoise
+class ValueNoise
 {
 	private:
-		float freqency;
+		
+		int octaves;
+		float lacurity;
+		float peristance;
+
 		int sizeX;
 		int sizeY;
 		int xOffset;
@@ -43,13 +47,13 @@ class PerlinNoise
 		};
 		int hashMask = 511;
 
-		float Lerp(float a,float b, float c);
-		float SmoothStep(float a);
+		double Lerp(double a, double b, double c);
+		double SmoothStep(double a);
 		
 	public:
-		PerlinNoise(float _freqency,int _sizeX,int _sizeY,int _xOffset,int _yOffset);
-		float ValueNoise1D(int x);
-		float ValueNoise2D(float x,float y);
+		ValueNoise(float _lacunarity, float _persitacne, int _sizeX, int _sizeY, int _xOffset, int _yOffset, int _octaves);
+		double ValueNoise1D(int x);
+		double ValueNoise2D(float x,float y);
 
 		
 

@@ -1,12 +1,12 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
-#include "PerlinNoise.h"
+#include "ValueNoise.h"
 
 int screanWidth = 500;
 int screanHeight = 500;
 
 
-sf::Texture CreateTexture(int sizeX, int sizeY,PerlinNoise noise) 
+sf::Texture CreateTexture(int sizeX, int sizeY,ValueNoise noise) 
 {
     sf::Texture texture;
  
@@ -17,7 +17,7 @@ sf::Texture CreateTexture(int sizeX, int sizeY,PerlinNoise noise)
     {
         for (int x = 0; x < sizeX; x++)
         {
-            float value = noise.ValueNoise2D(x,y);
+            int value = (sf::Uint8)(noise.ValueNoise1D(x) * 255);
 
             pixels[(x + y * sizeX) * 4]     = value;   // R
             pixels[(x + y * sizeX) * 4 + 1] = value;   // G
@@ -36,7 +36,8 @@ int main()
 {
     int sizeX = 400;
     int sizeY = 400;
-    PerlinNoise noise(4,sizeX,sizeY,2,2);
+    
+    ValueNoise noise(22,0.7,sizeX,sizeY,70,20,12);
 
     //Open window
     sf::RenderWindow window(sf::VideoMode(screanWidth, screanHeight), "Perlin Noise");
