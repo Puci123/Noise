@@ -17,7 +17,7 @@ sf::Texture CreateTexture(int sizeX, int sizeY,ValueNoise noise)
     {
         for (int x = 0; x < sizeX; x++)
         {
-            int value = (sf::Uint8)(noise.ValueNoise1D(x) * 255);
+            int value = (sf::Uint8)(noise.ValueNoise2D(x,y) * 255);
 
             pixels[(x + y * sizeX) * 4]     = value;   // R
             pixels[(x + y * sizeX) * 4 + 1] = value;   // G
@@ -37,7 +37,7 @@ int main()
     int sizeX = 400;
     int sizeY = 400;
     
-    ValueNoise noise(22,0.7,sizeX,sizeY,70,20,12);
+    ValueNoise noise(2,0.761,sizeX,sizeY,70,20,6);
 
     //Open window
     sf::RenderWindow window(sf::VideoMode(screanWidth, screanHeight), "Perlin Noise");

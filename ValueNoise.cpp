@@ -20,21 +20,34 @@ double ValueNoise::SmoothStep(double a)
 	return a * a * a * (a * (a * 6 - 15) + 10);
 }
 
-double ValueNoise::ValueNoise1D(int x)
+double ValueNoise::ValueNoise1D(float x)
 {
-	float normX = ((float)x / sizeX) * lacurity;
 	
-	int i0 = (int)(normX);
-	double t = SmoothStep(normX - (double)i0);
-
 	
-	i0 %= hashMask;
-	int i1 = i0 + 1;
+	double value = 0;
+	float freqency = lacurity;
+	float amplitude = peristance;
 
-	//Interpolate
-	int val1 = hash[i0];
-	int val2 = hash[i1];
-	return (Lerp(val1,val2,t)/hashMask);
+	for (size_t i = 0; i < octaves; i++)
+	{
+		double normX = (x / sizeX) * freqency;
+		int i0 = (int)(normX);
+		double t = SmoothStep(normX - (double)i0);
+
+
+		i0 %= hashMask;
+		int i1 = i0 + 1;
+
+		//Interpolate
+		int val1 = hash[i0];
+		int val2 = hash[i1];
+
+		value += (Lerp(val1, val2, t) / hashMask) * amplitude;
+	}
+	
+
+
+	return value ;
 }
 
 double ValueNoise::ValueNoise2D(float x, float y) 

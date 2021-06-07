@@ -52,7 +52,7 @@ class ValueNoise
 		
 	public:
 		ValueNoise(float _lacunarity, float _persitacne, int _sizeX, int _sizeY, int _xOffset, int _yOffset, int _octaves);
-		double ValueNoise1D(int x);
+		double ValueNoise1D(float x);
 		double ValueNoise2D(float x,float y);
 
 		
